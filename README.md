@@ -16,9 +16,13 @@ This isn’t a safe value to change unless the initialization logic within the v
 
 `PublicationOnly` mode also involves different exception behavior. If out of the ten threads running in parallel, seven succeed and three encounter an exception, the failed threads will still raise that exception out of the Lazy value.
 
-This repository contains a demonstration of this effect.
+This repository contains a simple demo of this effect. It contains a Lazy set to `PublicationOnly` mode that either returns a random number or throws an exception. Ten threads start in parallel and attempt to access the Lazy.
 
 #### Example output
+
+The successful threads all see the same value.
+
+The failing threads each raise the separate exceptions thrown in the value factory at the point where the Lazy value was accessed.
 
 ```
 2 succeeded with value: lazy-48
